@@ -1,0 +1,227 @@
+export default function ShuoChenWebsite() {
+  const navItems = ["About", "Research", "Experience", "Creative", "Contact"];
+
+  const research = [
+    {
+      title: "AI for Biology",
+      desc: "I am interested in how machine learning, computation, and biological data can work together to accelerate discovery in medicine, biotechnology, and human health.",
+    },
+    {
+      title: "Global Health",
+      desc: "My interest in biology began with public health: how scientific progress can become more scalable, more equitable, and more useful in improving real-world outcomes.",
+    },
+    {
+      title: "Biomedical Innovation",
+      desc: "I hope to explore problems where biology, engineering, and data science intersect—especially where research can translate into practical healthcare impact.",
+    },
+  ];
+
+  const experience = [
+    {
+      title: "iGEM Synthetic Biology",
+      text: "Worked in a collaborative research environment through iGEM, exploring how biological design, experimentation, and teamwork can address real-world problems.",
+      tag: "Research",
+    },
+    {
+      title: "Biology Exploration",
+      text: "Built a strong foundation through sustained study, scientific curiosity, and continued exploration of biomedical questions.",
+      tag: "Academic",
+    },
+    {
+      title: "Long-Term Direction",
+      text: "I want to build at the intersection of AI, biotechnology, and healthcare—creating tools that are rigorous, human-centered, and globally relevant.",
+      tag: "Vision",
+    },
+  ];
+
+    const creative = [
+    {
+      title: "Guitar",
+      text: "Music gives structure to emotion. Playing guitar has shaped how I think about discipline, patience, and personal expression.",
+    },
+    {
+      title: "Photography",
+      text: "Photography helps me notice atmosphere, detail, and quiet human moments. It is another form of observation—scientific in patience, artistic in feeling.",
+    },
+    {
+      title: "Basketball",
+      text: "Basketball taught me rhythm, resilience, teamwork, and composure under pressure—qualities I carry into both research and everyday life.",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen overflow-x-hidden bg-black text-zinc-100">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(168,85,247,0.14),transparent_25%),radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.10),transparent_30%)]" />
+      <div className="absolute inset-0 -z-10 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:44px_44px]" />
+
+      <div className="mx-auto max-w-6xl px-6 py-8 md:px-10">
+        <header className="sticky top-0 z-30 mb-12 border-b border-white/10 bg-black/60 backdrop-blur-xl">
+          <div className="flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="text-2xl font-semibold tracking-tight">Shuo Chen</h1>
+              <p className="text-sm text-zinc-400">AI for Biology · Global Health · Creativity</p>
+            </div>
+            <nav className="flex flex-wrap gap-5 text-sm text-zinc-300">
+              {navItems.map((item) => (
+                <a key={item} href={`#${item.toLowerCase()}`} className="transition hover:text-white">
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </header>
+
+        <section className="relative grid gap-10 pb-24 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+          <div className="space-y-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1.5 text-sm text-cyan-200">
+              <span className="h-2 w-2 rounded-full bg-cyan-300" />
+              Personal Research Website
+            </div>
+            <div className="space-y-4">
+              <p className="text-sm uppercase tracking-[0.35em] text-zinc-500">Shuo Chen</p>
+              <h2 className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl">
+                Exploring the future of <span className="text-white">biology</span>, <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">intelligence</span>, and <span className="text-zinc-300">human impact</span>.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-lg leading-8 text-zinc-400">
+              I am a student interested in biology, public health, and AI-driven biomedical innovation. My work spans synthetic biology, interdisciplinary research, and creative expression through music and photography.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="#research" className="rounded-2xl border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-100 transition hover:bg-cyan-300/15">
+                Explore research
+              </a>
+              <a href="#contact" className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/5">
+                Contact
+              </a>
+              <a href="#experience" className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/5">
+                View experience
+              </a>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-violet-500/20 blur-2xl" />
+            <div className="relative rounded-[2rem] border border-white/10 bg-white/5 p-7 shadow-2xl shadow-cyan-500/10 backdrop-blur-xl">
+              <div className="mb-6 flex items-center gap-2">
+                <div className="h-3 w-3 rounded-full bg-rose-400/80" />
+                <div className="h-3 w-3 rounded-full bg-amber-300/80" />
+                <div className="h-3 w-3 rounded-full bg-emerald-400/80" />
+              </div>
+              <div className="space-y-5 font-mono text-sm text-zinc-300">
+                <div>
+                  <p className="text-zinc-500">focus</p>
+                  <p className="mt-1 text-cyan-200">biology / AI / global health</p>
+                </div>
+                <div>
+                  <p className="text-zinc-500">current interests</p>
+                  <p className="mt-1">synthetic biology, biomedical data, healthcare innovation</p>
+                </div>
+                <div>
+                  <p className="text-zinc-500">creative system</p>
+                  <p className="mt-1">guitar, photography, storytelling</p>
+                </div>
+                <div>
+                  <p className="text-zinc-500">direction</p>
+                  <p className="mt-1 text-violet-200">AI-enabled tools for biology and medicine</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="scroll-mt-24 border-t border-white/10 py-20">
+          <div className="grid gap-10 md:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">About</p>
+              <h3 className="mt-4 text-3xl font-semibold tracking-tight">Scientific curiosity with a human-centered lens.</h3>
+            </div>
+            <div className="space-y-6 text-lg leading-8 text-zinc-300">
+              <p>
+                My interest in biology began with a concern for public health and a broader question: how can science improve health in a way that is both meaningful and widely accessible? Over time, that question expanded into an interest in biotechnology, biomedical engineering, and the role of intelligent systems in accelerating research.
+              </p>
+              <p>
+                I am especially drawn to work that combines rigor with imagination. Whether in research, music, or visual storytelling, I care about precision, depth, and the possibility of building something that lasts.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="research" className="scroll-mt-24 border-t border-white/10 py-20">
+          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Research Interests</p>
+              <h3 className="mt-4 text-3xl font-semibold tracking-tight">Questions I want to keep exploring</h3>
+            </div>
+            <p className="max-w-xl text-zinc-400">
+              I am interested in interdisciplinary problems where biology, engineering, and computation strengthen one another.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {research.map((item) => (
+              <div key={item.title} className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 transition hover:border-cyan-300/30 hover:bg-white/[0.05]">
+                <div className="mb-4 h-10 w-10 rounded-2xl border border-cyan-300/20 bg-cyan-300/10" />
+                <h4 className="text-xl font-medium text-white">{item.title}</h4>
+                <p className="mt-4 leading-7 text-zinc-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="experience" className="scroll-mt-24 border-t border-white/10 py-20">
+          <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Experience</p>
+          <h3 className="mt-4 text-3xl font-semibold tracking-tight">Selected experiences and direction</h3>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {experience.map((item) => (
+              <div key={item.title} className="rounded-[1.75rem] border border-white/10 bg-zinc-950/80 p-6 shadow-lg shadow-black/20">
+                <div className="mb-4 inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.25em] text-zinc-400">
+                  {item.tag}
+                </div>
+                <h4 className="text-xl font-medium">{item.title}</h4>
+                <p className="mt-4 leading-7 text-zinc-400">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="creative" className="scroll-mt-24 border-t border-white/10 py-20">
+          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Creative Practice</p>
+              <h3 className="mt-4 text-3xl font-semibold tracking-tight">The other half of how I think</h3>
+            </div>
+            <p className="max-w-xl text-zinc-400">
+              Creativity is not separate from science for me. It sharpens observation, patience, and personal voice.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {creative.map((item) => (
+              <div key={item.title} className="rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6">
+                <h4 className="text-xl font-medium text-white">{item.title}</h4>
+                <p className="mt-4 leading-7 text-zinc-400">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="scroll-mt-24 border-t border-white/10 py-20">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 md:p-10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.14),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(168,85,247,0.12),transparent_25%)]" />
+            <div className="relative">
+              <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Contact</p>
+              <h3 className="mt-4 text-3xl font-semibold tracking-tight">Let’s build something meaningful</h3>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-400">
+                I am always excited by conversations about biology, AI, health, music, or interdisciplinary ideas. This space can grow with future work, projects, and collaborations.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4 text-sm text-zinc-300">
+                <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">Open to research, creative, and interdisciplinary conversations.</div>
+              </div>
+                <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">GitHub: github.com/yourname</div>
+                <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">LinkedIn / Instagram</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
