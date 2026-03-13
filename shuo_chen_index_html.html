@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuo Chen</title>
+  <style>
+    :root {
+      --bg: #05070b;
+      --panel: rgba(255,255,255,0.05);
+      --panel-2: rgba(255,255,255,0.03);
+      --line: rgba(255,255,255,0.10);
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --cyan: #7dd3fc;
+      --blue: #60a5fa;
+      --violet: #a78bfa;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(59,130,246,.18), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(168,85,247,.14), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(16,185,129,.10), transparent 30%),
+        linear-gradient(#05070b, #05070b);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(5,7,11,.65);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 20px 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    nav a, .button {
+      color: #e4e4e7;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+
+    nav a:hover, .button:hover { color: white; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 40px;
+      align-items: center;
+      padding: 76px 0 72px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(125,211,252,.2);
+      background: rgba(125,211,252,.10);
+      color: #d5f3ff;
+      font-size: 14px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--cyan);
+    }
+
+    .eyebrow {
+      margin: 18px 0 0;
+      color: #71717a;
+      font-size: 12px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 16px 0 0;
+      font-size: clamp(46px, 7vw, 84px);
+      line-height: .98;
+      letter-spacing: -0.05em;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+      margin: 24px 0 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: transparent;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .btn:hover { background: rgba(255,255,255,.05); }
+
+    .btn-primary {
+      border-color: rgba(125,211,252,.3);
+      background: rgba(125,211,252,.10);
+      color: #d9f6ff;
+    }
+
+    .btn-primary:hover { background: rgba(125,211,252,.16); }
+
+    .terminal-shell {
+      position: relative;
+      border-radius: 32px;
+    }
+
+    .terminal-glow {
+      position: absolute;
+      inset: -24px;
+      border-radius: 40px;
+      background: linear-gradient(90deg, rgba(6,182,212,.20), rgba(59,130,246,.08), rgba(168,85,247,.20));
+      filter: blur(28px);
+      z-index: 0;
+    }
+
+    .terminal {
+      position: relative;
+      z-index: 1;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      backdrop-filter: blur(16px);
+    }
+
+    .lights { display: flex; gap: 10px; margin-bottom: 24px; }
+    .lights span { width: 12px; height: 12px; border-radius: 999px; display: block; }
+    .lights span:nth-child(1){ background: rgba(251,113,133,.85); }
+    .lights span:nth-child(2){ background: rgba(252,211,77,.85); }
+    .lights span:nth-child(3){ background: rgba(74,222,128,.85); }
+
+    .terminal .row { margin-bottom: 18px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .terminal .label { color: #71717a; font-size: 13px; }
+    .terminal .value { margin-top: 6px; font-size: 15px; color: #e4e4e7; line-height: 1.6; }
+    .terminal .value.cyan { color: #c5f1ff; }
+    .terminal .value.violet { color: #ddd6fe; }
+
+    section {
+      border-top: 1px solid var(--line);
+      padding: 84px 0;
+    }
+
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .section-label {
+      color: #71717a;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .3em;
+      margin: 0 0 14px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 40px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.9;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 40px;
+    }
+
+    .about-text p {
+      font-size: 18px;
+      line-height: 1.9;
+      color: #d4d4d8;
+      margin: 0 0 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      border-radius: 28px;
+      padding: 24px;
+      transition: .2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(125,211,252,.30);
+      background: rgba(255,255,255,.05);
+      transform: translateY(-2px);
+    }
+
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 16px;
+      background: rgba(125,211,252,.10);
+      border: 1px solid rgba(125,211,252,.20);
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: #a1a1aa;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .25em;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+    }
+
+    .card h4 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .contact-box {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 32px;
+      padding: 34px;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(34,211,238,.14), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(168,85,247,.12), transparent 25%);
+      pointer-events: none;
+    }
+
+    .contact-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-note {
+      display: inline-block;
+      margin-top: 26px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.20);
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: #d4d4d8;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 0 0 42px;
+      color: #71717a;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .about-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section-top,
+      .nav-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero { padding-top: 46px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(1120px, calc(100% - 32px)); }
+      .section-title { font-size: 30px; }
+      .hero h2 { font-size: 42px; }
+      .about-text p, .hero p { font-size: 16px; }
+      .terminal, .contact-box, .card { border-radius: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <div class="brand">
+        <h1>Shuo Chen</h1>
+        <p>AI for Biology · Global Health · Creativity</p>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#creative">Creative</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" style="border-top:none;">
+      <div>
+        <div class="pill"><span class="dot"></span>Personal Research Website</div>
+        <p class="eyebrow">Shuo Chen</p>
+        <h2>
+          Exploring the future of <span>biology</span>,
+          <span class="gradient">intelligence</span>, and
+          <span style="color:#d4d4d8;">human impact</span>.
+        </h2>
+        <p>
+          I am a student interested in biology, public health, and AI-driven biomedical innovation. My work spans synthetic biology, interdisciplinary research, and creative expression through music and photography.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#research">Explore research</a>
+          <a class="btn" href="#experience">View experience</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="terminal-shell">
+        <div class="terminal-glow"></div>
+        <div class="terminal">
+          <div class="lights"><span></span><span></span><span></span></div>
+          <div class="row">
+            <div class="label">focus</div>
+            <div class="value cyan">biology / AI / global health</div>
+          </div>
+          <div class="row">
+            <div class="label">current interests</div>
+            <div class="value">synthetic biology, biomedical data, healthcare innovation</div>
+          </div>
+          <div class="row">
+            <div class="label">creative system</div>
+            <div class="value">guitar, photography, storytelling</div>
+          </div>
+          <div class="row">
+            <div class="label">direction</div>
+            <div class="value violet">AI-enabled tools for biology and medicine</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about-grid">
+        <div>
+          <p class="section-label">About</p>
+          <h3 class="section-title">Scientific curiosity with a human-centered lens.</h3>
+        </div>
+        <div class="about-text">
+          <p>
+            My interest in biology began with a concern for public health and a broader question: how can science improve health in a way that is both meaningful and widely accessible? Over time, that question expanded into an interest in biotechnology, biomedical engineering, and the role of intelligent systems in accelerating research.
+          </p>
+          <p>
+            I am especially drawn to work that combines rigor with imagination. Whether in research, music, or visual storytelling, I care about precision, depth, and the possibility of building something that lasts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="section-top">
+        <div>
+          <p class="section-label">Research Interests</p>
+          <h3 class="section-title">Questions I want to keep exploring</h3>
+        </div>
+        <div class="section-desc">
+          I am interested in interdisciplinary problems where biology, engineering, and computation strengthen one another.
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="icon-box"></div>
+          <h4>AI for Biology</h4>
+          <p>I am interested in how machine learning, computation, and biological data can work together to accelerate discovery in medicine, biotechnology, and human health.</p>
+        </article>
+        <article class="card">
+          <div class="icon-box"></div>
+          <h4>Global Health</h4>
+          <p>My interest in biology began with public health: how scientific progress can become more scalable, more equitable, and more useful in improving real-world outcomes.</p>
+        </article>
+        <article class="card">
+          <div class="icon-box"></div>
+          <h4>Biomedical Innovation</h4>
+          <p>I hope to explore problems where biology, engineering, and data science intersect—especially where research can translate into practical healthcare impact.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-top">
+        <div>
+          <p class="section-label">Experience</p>
+          <h3 class="section-title">Selected experiences and direction</h3>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="tag">Research</div>
+          <h4>iGEM Synthetic Biology</h4>
+          <p>Worked in a collaborative research environment through iGEM, exploring how biological design, experimentation, and teamwork can address real-world problems.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Academic</div>
+          <h4>Biology Exploration</h4>
+          <p>Built a strong foundation through sustained study, scientific curiosity, and continued exploration of biomedical questions.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Vision</div>
+          <h4>Long-Term Direction</h4>
+          <p>I want to build at the intersection of AI, biotechnology, and healthcare—creating tools that are rigorous, human-centered, and globally relevant.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="creative">
+      <div class="section-top">
+        <div>
+          <p class="section-label">Creative Practice</p>
+          <h3 class="section-title">The other half of how I think</h3>
+        </div>
+        <div class="section-desc">
+          Creativity is not separate from science for me. It sharpens observation, patience, and personal voice.
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h4>Guitar</h4>
+          <p>Music gives structure to emotion. Playing guitar has shaped how I think about discipline, patience, and personal expression.</p>
+        </article>
+        <article class="card">
+          <h4>Photography</h4>
+          <p>Photography helps me notice atmosphere, detail, and quiet human moments. It is another form of observation—scientific in patience, artistic in feeling.</p>
+        </article>
+        <article class="card">
+          <h4>Basketball</h4>
+          <p>Basketball taught me rhythm, resilience, teamwork, and composure under pressure—qualities I carry into both research and everyday life.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-box">
+        <div class="contact-content">
+          <p class="section-label">Contact</p>
+          <h3 class="section-title">Let’s build something meaningful</h3>
+          <p class="section-desc" style="max-width:760px;">
+            I am always excited by conversations about biology, AI, health, music, or interdisciplinary ideas. This space can grow with future work, projects, and collaborations.
+          </p>
+          <div class="contact-note">Open to research, creative, and interdisciplinary conversations.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    © 2026 Shuo Chen
+  </footer>
+</body>
+</html>
